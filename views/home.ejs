@@ -1,0 +1,34 @@
+<html>
+    <title>
+        <%= title %>
+    </title>
+    <body>
+        <%= title %>
+        <form action="/create-task" method="POST">
+            <input type="text" name="description" placeholder="What are you upto :p" required>
+            <select name="category">
+                <!-- <option value=""></option> --> 
+                <option>Personal</option>
+                <option>School</option>
+                <option>Work</option>
+                <option>Other</option>
+            </select>
+            <input type="date" name="dueDate">
+            <button type="submit">Add Task</button>
+        </form>
+
+        <div>
+            <ul>
+                <% for (i of task_list) { %>
+                    <li>
+                        <p><%=i.description%></p>
+                        <p><%=i.category%></p>
+                        <p><%=i.dueDate%></p>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+
+
+    </body>
+</html>
