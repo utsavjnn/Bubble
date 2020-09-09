@@ -19,13 +19,17 @@
 
         <div>
             <ul>
-                <% for (i of task_list) { %>
-                    <li>
-                        <p><%=i.description%></p>
-                        <p><%=i.category%></p>
-                        <p><%=i.dueDate%></p>
-                    </li>
-                <% } %>
+                <form action="/delete-task" method="POST">
+                    <% for (i of task_list) { %>
+                        <li>
+                            <p><%=i.description%></p>
+                            <p><%=i.category%></p>
+                            <p><%=i.dueDate%></p>
+                            <input id="selected" name="todel" type="checkbox" value=<%= i._id %>>
+                        </li>
+                    <% } %>
+                    <button type="submit">Delete task</button>
+                </form>
             </ul>
         </div>
 

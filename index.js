@@ -12,6 +12,7 @@ app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded());
 
 app.post('/create-task',function(req,res){
+   
     Task.create({
         description:req.body.description,
         category:req.body.category,
@@ -25,6 +26,24 @@ app.post('/create-task',function(req,res){
         return res.redirect('back');
     });
 })
+
+app.post('/delete-task',function(req,res){
+    // console.log(req.body.todel[0]);
+    for (i of req.body.todel)
+    {
+        Task.findByIdAndDelete(i,function(err){
+            if(err)
+            {
+                console.log("Error in Id retreival");
+                return;
+            }
+            // return res.redirect('/');
+        });
+    }
+    
+     return res.redirect('back');
+});
+
 
 app.get('/',function(req,res){
     Task.find({},function(err,tasks){
